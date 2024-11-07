@@ -1,0 +1,714 @@
+{
+  "version": 2,
+  "status": "success",
+  "eval": {
+    "run_id": "AHWHMkZTXxmxxfatGUqBV8",
+    "created": "2024-11-07T14:39:49+09:00",
+    "task": "addition_problem",
+    "task_id": "kfp3g9GG2gpXTmdeR3gpK9",
+    "task_version": 0,
+    "task_file": "tutorial/tools.py",
+    "task_attribs": {},
+    "task_args": {},
+    "dataset": {
+      "samples": 1,
+      "sample_ids": [
+        1
+      ],
+      "shuffled": false
+    },
+    "model": "openai/gpt-4o-mini",
+    "model_args": {},
+    "config": {},
+    "packages": {
+      "inspect_ai": "0.3.44"
+    }
+  },
+  "plan": {
+    "name": "plan",
+    "steps": [
+      {
+        "solver": "use_tools",
+        "params": {
+          "tools": [
+            {
+              "type": "tool",
+              "name": "add",
+              "params": {}
+            }
+          ]
+        }
+      },
+      {
+        "solver": "generate",
+        "params": {}
+      }
+    ],
+    "config": {}
+  },
+  "results": {
+    "total_samples": 1,
+    "completed_samples": 1,
+    "scores": [
+      {
+        "name": "match",
+        "scorer": "match",
+        "params": {
+          "numeric": true
+        },
+        "metrics": {
+          "accuracy": {
+            "name": "accuracy",
+            "value": 1.0,
+            "options": {}
+          },
+          "stderr": {
+            "name": "stderr",
+            "value": 0.0,
+            "options": {}
+          }
+        }
+      }
+    ]
+  },
+  "stats": {
+    "started_at": "2024-11-07T14:39:49+09:00",
+    "completed_at": "2024-11-07T14:39:51+09:00",
+    "model_usage": {
+      "openai/gpt-4o-mini": {
+        "input_tokens": 151,
+        "output_tokens": 26,
+        "total_tokens": 177
+      }
+    }
+  },
+  "samples": [
+    {
+      "id": 1,
+      "epoch": 1,
+      "input": "What is 1 + 1?",
+      "target": [
+        "2",
+        "2.0"
+      ],
+      "messages": [
+        {
+          "content": "What is 1 + 1?",
+          "source": "input",
+          "role": "user"
+        },
+        {
+          "content": "",
+          "source": "generate",
+          "role": "assistant",
+          "tool_calls": [
+            {
+              "id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+              "function": "add",
+              "arguments": {
+                "x": 1,
+                "y": 1
+              },
+              "type": "function"
+            }
+          ]
+        },
+        {
+          "content": "2",
+          "role": "tool",
+          "tool_call_id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+          "function": "add"
+        },
+        {
+          "content": "1 + 1 equals 2.",
+          "source": "generate",
+          "role": "assistant"
+        }
+      ],
+      "output": {
+        "model": "gpt-4o-mini-2024-07-18",
+        "choices": [
+          {
+            "message": {
+              "content": "1 + 1 equals 2.",
+              "source": "generate",
+              "role": "assistant"
+            },
+            "stop_reason": "stop"
+          }
+        ],
+        "usage": {
+          "input_tokens": 88,
+          "output_tokens": 9,
+          "total_tokens": 97
+        }
+      },
+      "scores": {
+        "match": {
+          "value": "C",
+          "answer": "2",
+          "explanation": "1 + 1 equals 2."
+        }
+      },
+      "metadata": {},
+      "store": {},
+      "events": [
+        {
+          "timestamp": "2024-11-07T14:39:49.214030+09:00",
+          "event": "sample_init",
+          "sample": {
+            "input": "What is 1 + 1?",
+            "target": [
+              "2",
+              "2.0"
+            ],
+            "id": 1
+          },
+          "state": {
+            "messages": [
+              {
+                "content": "What is 1 + 1?",
+                "source": "input",
+                "role": "user"
+              }
+            ],
+            "tools": [],
+            "tool_choice": null,
+            "store": {},
+            "output": {
+              "model": "openai/gpt-4o-mini",
+              "choices": []
+            },
+            "completed": false,
+            "metadata": {}
+          }
+        },
+        {
+          "timestamp": "2024-11-07T14:39:49.214343+09:00",
+          "event": "step",
+          "action": "begin",
+          "type": "solver",
+          "name": "use_tools"
+        },
+        {
+          "timestamp": "2024-11-07T14:39:49.216688+09:00",
+          "event": "state",
+          "changes": [
+            {
+              "op": "add",
+              "path": "/tools/0",
+              "value": {
+                "name": "add",
+                "description": "Add two numbers.",
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "integer",
+                      "description": "First number to add."
+                    },
+                    "y": {
+                      "type": "integer",
+                      "description": "Second number to add."
+                    }
+                  },
+                  "required": [
+                    "x",
+                    "y"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/tool_choice",
+              "value": "auto"
+            }
+          ]
+        },
+        {
+          "timestamp": "2024-11-07T14:39:49.216702+09:00",
+          "event": "step",
+          "action": "end",
+          "type": "solver",
+          "name": "use_tools"
+        },
+        {
+          "timestamp": "2024-11-07T14:39:49.216718+09:00",
+          "event": "step",
+          "action": "begin",
+          "type": "solver",
+          "name": "generate"
+        },
+        {
+          "timestamp": "2024-11-07T14:39:50.268491+09:00",
+          "event": "model",
+          "model": "openai/gpt-4o-mini",
+          "input": [
+            {
+              "content": "What is 1 + 1?",
+              "source": "input",
+              "role": "user"
+            }
+          ],
+          "tools": [
+            {
+              "name": "add",
+              "description": "Add two numbers.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "description": "First number to add."
+                  },
+                  "y": {
+                    "type": "integer",
+                    "description": "Second number to add."
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              }
+            }
+          ],
+          "tool_choice": "auto",
+          "config": {},
+          "output": {
+            "model": "gpt-4o-mini-2024-07-18",
+            "choices": [
+              {
+                "message": {
+                  "content": "",
+                  "source": "generate",
+                  "role": "assistant",
+                  "tool_calls": [
+                    {
+                      "id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+                      "function": "add",
+                      "arguments": {
+                        "x": 1,
+                        "y": 1
+                      },
+                      "type": "function"
+                    }
+                  ]
+                },
+                "stop_reason": "tool_calls"
+              }
+            ],
+            "usage": {
+              "input_tokens": 63,
+              "output_tokens": 17,
+              "total_tokens": 80
+            }
+          },
+          "call": {
+            "request": {
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "What is 1 + 1?"
+                }
+              ],
+              "tools": [
+                {
+                  "type": "function",
+                  "function": {
+                    "name": "add",
+                    "description": "Add two numbers.",
+                    "parameters": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "integer",
+                          "description": "First number to add."
+                        },
+                        "y": {
+                          "type": "integer",
+                          "description": "Second number to add."
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                }
+              ],
+              "tool_choice": "auto",
+              "model": "gpt-4o-mini"
+            },
+            "response": {
+              "id": "chatcmpl-AQpXBfNGvIikO4kgE5vPhRXuDrzkj",
+              "choices": [
+                {
+                  "finish_reason": "tool_calls",
+                  "index": 0,
+                  "logprobs": null,
+                  "message": {
+                    "content": null,
+                    "refusal": null,
+                    "role": "assistant",
+                    "audio": null,
+                    "function_call": null,
+                    "tool_calls": [
+                      {
+                        "id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+                        "function": {
+                          "arguments": "{\"x\":1,\"y\":1}",
+                          "name": "add"
+                        },
+                        "type": "function"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "created": 1730957989,
+              "model": "gpt-4o-mini-2024-07-18",
+              "object": "chat.completion",
+              "service_tier": null,
+              "system_fingerprint": "fp_0ba0d124f1",
+              "usage": {
+                "completion_tokens": 17,
+                "prompt_tokens": 63,
+                "total_tokens": 80,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 0,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "timestamp": "2024-11-07T14:39:50.275597+09:00",
+          "event": "tool",
+          "type": "function",
+          "id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+          "function": "add",
+          "arguments": {
+            "x": 1,
+            "y": 1
+          },
+          "result": "2",
+          "events": []
+        },
+        {
+          "timestamp": "2024-11-07T14:39:51.228861+09:00",
+          "event": "model",
+          "model": "openai/gpt-4o-mini",
+          "input": [
+            {
+              "content": "What is 1 + 1?",
+              "source": "input",
+              "role": "user"
+            },
+            {
+              "content": "",
+              "source": "generate",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+                  "function": "add",
+                  "arguments": {
+                    "x": 1,
+                    "y": 1
+                  },
+                  "type": "function"
+                }
+              ]
+            },
+            {
+              "content": "2",
+              "role": "tool",
+              "tool_call_id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+              "function": "add"
+            }
+          ],
+          "tools": [
+            {
+              "name": "add",
+              "description": "Add two numbers.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "description": "First number to add."
+                  },
+                  "y": {
+                    "type": "integer",
+                    "description": "Second number to add."
+                  }
+                },
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "additionalProperties": false
+              }
+            }
+          ],
+          "tool_choice": "auto",
+          "config": {},
+          "output": {
+            "model": "gpt-4o-mini-2024-07-18",
+            "choices": [
+              {
+                "message": {
+                  "content": "1 + 1 equals 2.",
+                  "source": "generate",
+                  "role": "assistant"
+                },
+                "stop_reason": "stop"
+              }
+            ],
+            "usage": {
+              "input_tokens": 88,
+              "output_tokens": 9,
+              "total_tokens": 97
+            }
+          },
+          "call": {
+            "request": {
+              "messages": [
+                {
+                  "role": "user",
+                  "content": "What is 1 + 1?"
+                },
+                {
+                  "role": "assistant",
+                  "content": "",
+                  "tool_calls": [
+                    {
+                      "id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+                      "function": {
+                        "name": "add",
+                        "arguments": "{\"x\": 1, \"y\": 1}"
+                      },
+                      "type": "function"
+                    }
+                  ]
+                },
+                {
+                  "role": "tool",
+                  "content": "2",
+                  "tool_call_id": "call_XNLC3Q8CtwUWbfgAosXmi2jd"
+                }
+              ],
+              "tools": [
+                {
+                  "type": "function",
+                  "function": {
+                    "name": "add",
+                    "description": "Add two numbers.",
+                    "parameters": {
+                      "type": "object",
+                      "properties": {
+                        "x": {
+                          "type": "integer",
+                          "description": "First number to add."
+                        },
+                        "y": {
+                          "type": "integer",
+                          "description": "Second number to add."
+                        }
+                      },
+                      "required": [
+                        "x",
+                        "y"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                }
+              ],
+              "tool_choice": "auto",
+              "model": "gpt-4o-mini"
+            },
+            "response": {
+              "id": "chatcmpl-AQpXCE5jlQN7KswLHujxf23279ExL",
+              "choices": [
+                {
+                  "finish_reason": "stop",
+                  "index": 0,
+                  "logprobs": null,
+                  "message": {
+                    "content": "1 + 1 equals 2.",
+                    "refusal": null,
+                    "role": "assistant",
+                    "audio": null,
+                    "function_call": null,
+                    "tool_calls": null
+                  }
+                }
+              ],
+              "created": 1730957990,
+              "model": "gpt-4o-mini-2024-07-18",
+              "object": "chat.completion",
+              "service_tier": null,
+              "system_fingerprint": "fp_9b78b61c52",
+              "usage": {
+                "completion_tokens": 9,
+                "prompt_tokens": 88,
+                "total_tokens": 97,
+                "completion_tokens_details": {
+                  "accepted_prediction_tokens": 0,
+                  "audio_tokens": 0,
+                  "reasoning_tokens": 0,
+                  "rejected_prediction_tokens": 0
+                },
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cached_tokens": 0
+                }
+              }
+            }
+          }
+        },
+        {
+          "timestamp": "2024-11-07T14:39:51.231038+09:00",
+          "event": "state",
+          "changes": [
+            {
+              "op": "add",
+              "path": "/messages/1",
+              "value": {
+                "content": "",
+                "source": "generate",
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+                    "function": "add",
+                    "arguments": {
+                      "x": 1,
+                      "y": 1
+                    },
+                    "type": "function"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "add",
+              "path": "/messages/2",
+              "value": {
+                "content": "2",
+                "role": "tool",
+                "tool_call_id": "call_XNLC3Q8CtwUWbfgAosXmi2jd",
+                "function": "add"
+              }
+            },
+            {
+              "op": "add",
+              "path": "/messages/3",
+              "value": {
+                "content": "1 + 1 equals 2.",
+                "source": "generate",
+                "role": "assistant"
+              }
+            },
+            {
+              "op": "add",
+              "path": "/output/usage",
+              "value": {
+                "input_tokens": 88,
+                "output_tokens": 9,
+                "total_tokens": 97
+              }
+            },
+            {
+              "op": "replace",
+              "path": "/output/model",
+              "value": "gpt-4o-mini-2024-07-18",
+              "replaced": "openai/gpt-4o-mini"
+            },
+            {
+              "op": "add",
+              "path": "/output/choices/0",
+              "value": {
+                "message": {
+                  "content": "1 + 1 equals 2.",
+                  "source": "generate",
+                  "role": "assistant"
+                },
+                "stop_reason": "stop"
+              }
+            }
+          ]
+        },
+        {
+          "timestamp": "2024-11-07T14:39:51.231096+09:00",
+          "event": "step",
+          "action": "end",
+          "type": "solver",
+          "name": "generate"
+        },
+        {
+          "timestamp": "2024-11-07T14:39:51.231195+09:00",
+          "event": "step",
+          "action": "begin",
+          "type": "scorer",
+          "name": "match"
+        },
+        {
+          "timestamp": "2024-11-07T14:39:51.232615+09:00",
+          "event": "score",
+          "score": {
+            "value": "C",
+            "answer": "2",
+            "explanation": "1 + 1 equals 2."
+          },
+          "target": [
+            "2",
+            "2.0"
+          ]
+        },
+        {
+          "timestamp": "2024-11-07T14:39:51.233686+09:00",
+          "event": "step",
+          "action": "end",
+          "type": "scorer",
+          "name": "match"
+        }
+      ],
+      "model_usage": {
+        "openai/gpt-4o-mini": {
+          "input_tokens": 151,
+          "output_tokens": 26,
+          "total_tokens": 177
+        }
+      },
+      "attachments": {}
+    }
+  ],
+  "reductions": [
+    {
+      "scorer": "match",
+      "samples": [
+        {
+          "value": 1.0,
+          "answer": "2",
+          "explanation": "1 + 1 equals 2.",
+          "sample_id": 1
+        }
+      ]
+    }
+  ]
+}
